@@ -31,36 +31,6 @@ The goal is to:
 ---
 
 ## 📁 Repository Structure
-```text
-# 🤖 Agentic AI Playground
-
-<p align="center">
-  <b>Author:</b> Aniket Waichal<br>
-  <b>Hands-on Learning Hub for Agentic AI & LLM Engineering</b><br>
-  Building real-world AI systems through structured learning and experiments.
-</p>
-
----
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Focus-Agentic%20AI-blue" />
-  <img src="https://img.shields.io/badge/Domain-LLM%20Engineering-orange" />
-  <img src="https://img.shields.io/badge/Content-Notes%20%2B%20Experiments-green" />
-  <img src="https://img.shields.io/badge/Status-In%20Progress-yellow" />
-</p>
-
----
-
-## 📌 About This Repository
-
-This repository documents my journey into **Agentic AI and LLM Engineering** through:
-- Structured notes  
-- Hands-on experiments  
-- Real-world system building  
-
----
-
-## 📁 Repository Structure
 
 ```text
 agentic-ai-playground/
