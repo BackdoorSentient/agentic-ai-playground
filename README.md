@@ -31,6 +31,7 @@ The goal is to:
 ---
 
 ## 📁 Repository Structure
+```text
 agentic-ai-playground/
 │
 ├── README.md
@@ -60,6 +61,8 @@ agentic-ai-playground/
 └── experiments/                 # Hands-on implementations
     ├── mini-projects/
     └── prototypes/
+
+```
 
 ## 📚 What I'm Learning
 
@@ -100,6 +103,7 @@ agentic-ai-playground/
 Each file is written in a **clear, structured format** to maximize understanding and retention.
 
 **Suggested learning path:**
+```text
 
 foundations/
    ↓
@@ -110,6 +114,7 @@ rag/
 agents/
    ↓
 experiments/
+```
 
 ---
 
