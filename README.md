@@ -32,33 +32,70 @@ The goal is to:
 
 ## 📁 Repository Structure
 ```text
+# 🤖 Agentic AI Playground
+
+<p align="center">
+  <b>Author:</b> Aniket Waichal<br>
+  <b>Hands-on Learning Hub for Agentic AI & LLM Engineering</b><br>
+  Building real-world AI systems through structured learning and experiments.
+</p>
+
+---
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Focus-Agentic%20AI-blue" />
+  <img src="https://img.shields.io/badge/Domain-LLM%20Engineering-orange" />
+  <img src="https://img.shields.io/badge/Content-Notes%20%2B%20Experiments-green" />
+  <img src="https://img.shields.io/badge/Status-In%20Progress-yellow" />
+</p>
+
+---
+
+## 📌 About This Repository
+
+This repository documents my journey into **Agentic AI and LLM Engineering** through:
+- Structured notes  
+- Hands-on experiments  
+- Real-world system building  
+
+---
+
+## 📁 Repository Structure
+
+```text
 agentic-ai-playground/
 │
 ├── README.md
+├── DAY-1.md
 │
 ├── foundations/                  # Core LLM and AI fundamentals
 │   ├── 01-product-ai-patterns.md
-│   ├── 02-temperature-top-p.md
-│   ├── 03-context-window.md
-│   ├── 04-pretraining.md
-│   └── ...
+│   ├── 02-temperature.md
+│   ├── 03-top-p.md
+│   ├── 04-context-window.md
+│   ├── 05-pretraining.md
+│   ├── 06-fine-tuning.md
+│   ├── 07-RLHF.md
+│   ├── 08-structured-outputs.md
+│   ├── 09-rag-architecture.md
+│   └── 10-fastapi.md
 │
-├── prompting/                   # Prompt engineering techniques
+├── prompting/                   # Prompt engineering techniques (upcoming)
 │   ├── basics.md
 │   ├── structured-output.md
 │   └── prompt-patterns.md
 │
-├── agents/                      # Agentic workflows and systems
+├── agents/                      # Agentic workflows and systems (upcoming)
 │   ├── tool-calling.md
 │   ├── memory.md
 │   └── multi-agent-systems.md
 │
-├── rag/                         # Retrieval-Augmented Generation
+├── rag/                         # Retrieval-Augmented Generation (upcoming)
 │   ├── basics.md
 │   ├── embeddings.md
 │   └── vector-databases.md
 │
-└── experiments/                 # Hands-on implementations
+└── experiments/                 # Hands-on implementations (upcoming)
     ├── mini-projects/
     └── prototypes/
 
@@ -70,7 +107,7 @@ agentic-ai-playground/
 - Product AI Patterns (Assist vs Automate)
 - Temperature & Top-p (Nucleus Sampling)
 - Context Window & Tokenization
-- Pre-training and model behavior
+- Pre-training , Fine-tuning, RLHF and model behavior
 
 ---
 
@@ -114,7 +151,6 @@ rag/
 agents/
    ↓
 experiments/
-```
 
 ---
 
