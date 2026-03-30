@@ -35,33 +35,31 @@ agentic-ai-playground/
 │
 ├── README.md
 │
-├── foundations/ # Core LLM and AI fundamentals
-│ ├── 01-product-ai-patterns.md
-│ ├── 02-temperature-top-p.md
-│ ├── 03-context-window.md
-│ ├── 04-pretraining.md
-│ └── ... (more topics)
+├── foundations/                  # Core LLM and AI fundamentals
+│   ├── 01-product-ai-patterns.md
+│   ├── 02-temperature-top-p.md
+│   ├── 03-context-window.md
+│   ├── 04-pretraining.md
+│   └── ...
 │
-├── prompting/ # Prompt engineering techniques
-│ ├── basics.md
-│ ├── structured-output.md
-│ └── prompt-patterns.md
+├── prompting/                   # Prompt engineering techniques
+│   ├── basics.md
+│   ├── structured-output.md
+│   └── prompt-patterns.md
 │
-├── agents/ # Agentic workflows and systems
-│ ├── tool-calling.md
-│ ├── memory.md
-│ └── multi-agent-systems.md
+├── agents/                      # Agentic workflows and systems
+│   ├── tool-calling.md
+│   ├── memory.md
+│   └── multi-agent-systems.md
 │
-├── rag/ # Retrieval-Augmented Generation
-│ ├── basics.md
-│ ├── embeddings.md
-│ └── vector-databases.md
+├── rag/                         # Retrieval-Augmented Generation
+│   ├── basics.md
+│   ├── embeddings.md
+│   └── vector-databases.md
 │
-└── experiments/ # Hands-on implementations
-├── mini-projects/
-└── prototypes/
-
----
+└── experiments/                 # Hands-on implementations
+    ├── mini-projects/
+    └── prototypes/
 
 ## 📚 What I'm Learning
 
@@ -104,13 +102,13 @@ Each file is written in a **clear, structured format** to maximize understanding
 **Suggested learning path:**
 
 foundations/
-↓
+   ↓
 prompting/
-↓
+   ↓
 rag/
-↓
+   ↓
 agents/
-↓
+   ↓
 experiments/
 
 ---
