@@ -14,6 +14,7 @@
   <img src="https://img.shields.io/badge/Content-Notes%20%2B%20Experiments-green" />
   <img src="https://img.shields.io/badge/Format-Structured%20Learning-purple" />
   <img src="https://img.shields.io/badge/Status-In%20Progress-yellow" />
+  <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey" />
 </p>
 
 ---
@@ -36,6 +37,7 @@ The goal is to:
 agentic-ai-playground/
 │
 ├── README.md
+├── LICENSE                           # CC BY-NC 4.0 — read before reusing
 │
 ├── days/                             # Daily Q&A summary notes (entry point per day)
 │   ├── DAY-1.md                      # LLM Foundations
@@ -196,12 +198,31 @@ Start with the `days/DAY-X.md` summary file for each day to get the full picture
 
 ---
 
-## 🤝 Contributing
+## ⚠️ License & Attribution
 
-If you have suggestions, improvements, or ideas, feel free to open an issue or contribute.
+**© 2026 Aniket Waichal. All rights reserved under CC BY-NC 4.0.**
+
+This repository is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](https://creativecommons.org/licenses/by-nc/4.0/).
+
+**You are free to:**
+- Read, study, and learn from this material
+- Share it with proper attribution
+
+**You are NOT allowed to:**
+- Republish or redistribute this content as your own
+- Use this material for commercial purposes
+- Remove attribution and claim authorship
+
+If you use or reference this work, you **must** credit:
+```
+Aniket Waichal — https://github.com/AniketWaichal/agentic-ai-playground
+Licensed under CC BY-NC 4.0
+```
+
+See the [`LICENSE`](LICENSE) file for full terms.
 
 ---
 
-## 📄 License
+## 🤝 Contributing
 
-MIT — free to use for personal learning and sharing.
+If you have suggestions, improvements, or ideas, feel free to open an issue or contribute — with attribution intact.
