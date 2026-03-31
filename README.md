@@ -36,8 +36,11 @@ The goal is to:
 agentic-ai-playground/
 │
 ├── README.md
-├── DAY-1.md                          # Day 1 Q&A summary (LLM Foundations)
-├── DAY-2.md                          # Day 2 Q&A summary (Prompt Engineering)
+│
+├── days/                             # Daily Q&A summary notes (entry point per day)
+│   ├── DAY-1.md                      # LLM Foundations
+│   ├── DAY-2.md                      # Prompt Engineering
+│   └── ...                           # DAY-3 through DAY-14 as the program progresses
 │
 ├── foundations/                      # Core LLM and AI fundamentals
 │   ├── 01-product-ai-patterns.md
@@ -85,7 +88,7 @@ agentic-ai-playground/
 - Structured Outputs & RAG Architecture
 - FastAPI Framework
 
-> 📄 Summary: [`DAY-1.md`](DAY-1.md) | Deep dives: [`foundations/`](foundations/)
+> 📄 Summary: [`days/DAY-1.md`](days/DAY-1.md) | Deep dives: [`foundations/`](foundations/)
 
 ---
 
@@ -97,7 +100,7 @@ agentic-ai-playground/
 - Structured outputs: JSON / YAML / TOON
 - Pydantic validation & self-healing retry loops
 
-> 📄 Summary: [`DAY-2.md`](DAY-2.md) | Deep dives: [`prompting/`](prompting/)
+> 📄 Summary: [`days/DAY-2.md`](days/DAY-2.md) | Deep dives: [`prompting/`](prompting/)
 
 ---
 
@@ -123,18 +126,20 @@ Each file is written in a **clear, structured format** to maximize understanding
 
 **Suggested learning path:**
 ```text
-foundations/
-   ↓
-prompting/
-   ↓
-rag/
-   ↓
-agents/
-   ↓
-experiments/
+days/DAY-X.md        ← start here each day (summary + key numbers)
+      ↓
+foundations/         ← Week 1 deep dives
+      ↓
+prompting/           ← Week 1 deep dives
+      ↓
+rag/                 ← Week 2 deep dives
+      ↓
+agents/              ← Week 2 deep dives
+      ↓
+experiments/         ← Week 3 hands-on builds
 ```
 
-Start with the `DAY-X.md` summary file for each day to get the full picture and key numbers, then go deep into the individual topic files in each folder.
+Start with the `days/DAY-X.md` summary file for each day to get the full picture and key numbers, then go deep into the individual topic files in each folder.
 
 ---
 
