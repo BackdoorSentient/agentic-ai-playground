@@ -54,9 +54,3 @@ The **Automate** pattern lets the AI execute end-to-end with no human touch per 
 **AI demo syndrome** deserves special attention: models often perform well on clean, structured demo inputs but fail on real-world messy data. Senior engineers build evaluation pipelines before shipping — not after.
 
 ---
-
-```md
----
- 
-> © 2026 Aniket Waichal | [agentic-ai-playground](https://github.com/AniketWaichal/agentic-ai-playground) | Licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) — do not republish without attribution.
-```
