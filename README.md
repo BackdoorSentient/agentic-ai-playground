@@ -36,9 +36,10 @@ The goal is to:
 agentic-ai-playground/
 │
 ├── README.md
-├── DAY-1.md
+├── DAY-1.md                          # Day 1 Q&A summary (LLM Foundations)
+├── DAY-2.md                          # Day 2 Q&A summary (Prompt Engineering)
 │
-├── foundations/                  # Core LLM and AI fundamentals
+├── foundations/                      # Core LLM and AI fundamentals
 │   ├── 01-product-ai-patterns.md
 │   ├── 02-temperature.md
 │   ├── 03-top-p.md
@@ -47,49 +48,60 @@ agentic-ai-playground/
 │   ├── 06-fine-tuning.md
 │   ├── 07-RLHF.md
 │   ├── 08-structured-outputs.md
-│   ├── 09-rag-architecture.md
-│   └── 10-fastapi.md
+│   ├── 09-rag-architecture-and-evaluation.md
+│   └── 10-fastapi-framework.md
 │
-├── prompting/                   # Prompt engineering techniques (upcoming)
-│   ├── basics.md
-│   ├── structured-output.md
-│   └── prompt-patterns.md
+├── prompting/                        # Prompt engineering techniques
+│   ├── 01-zero-shot-and-few-shot.md
+│   ├── 02-chain-of-thought.md
+│   ├── 03-react-and-reflexion.md
+│   ├── 04-system-prompt-design.md
+│   └── 05-structured-outputs-and-validation.md
 │
-├── agents/                      # Agentic workflows and systems (upcoming)
+├── agents/                           # Agentic workflows and systems (upcoming)
 │   ├── tool-calling.md
 │   ├── memory.md
 │   └── multi-agent-systems.md
 │
-├── rag/                         # Retrieval-Augmented Generation (upcoming)
+├── rag/                              # Retrieval-Augmented Generation (upcoming)
 │   ├── basics.md
 │   ├── embeddings.md
 │   └── vector-databases.md
 │
-└── experiments/                 # Hands-on implementations (upcoming)
+└── experiments/                      # Hands-on implementations (upcoming)
     ├── mini-projects/
     └── prototypes/
-
 ```
+
+---
 
 ## 📚 What I'm Learning
 
-### 🧠 LLM Foundations
+### 🧠 LLM Foundations — Day 1 ✅
 - Product AI Patterns (Assist vs Automate)
 - Temperature & Top-p (Nucleus Sampling)
 - Context Window & Tokenization
-- Pre-training , Fine-tuning, RLHF and model behavior
+- Pre-training, Fine-tuning, RLHF and model behavior
+- Structured Outputs & RAG Architecture
+- FastAPI Framework
+
+> 📄 Summary: [`DAY-1.md`](DAY-1.md) | Deep dives: [`foundations/`](foundations/)
 
 ---
 
-### ✍️ Prompt Engineering
-- Prompt design strategies
-- Structured outputs & validation
-- Few-shot & zero-shot prompting
-- Controlling model behavior
+### ✍️ Prompt Engineering — Day 2 ✅
+- Zero-shot & Few-shot prompting
+- Chain-of-Thought (CoT, Self-consistency, Tree of Thought)
+- ReAct & Reflexion agent patterns
+- System prompt design for production agents
+- Structured outputs: JSON / YAML / TOON
+- Pydantic validation & self-healing retry loops
+
+> 📄 Summary: [`DAY-2.md`](DAY-2.md) | Deep dives: [`prompting/`](prompting/)
 
 ---
 
-### 🤖 Agentic AI Systems
+### 🤖 Agentic AI Systems (upcoming)
 - Tool calling and function execution
 - Memory (short-term & long-term)
 - Planning and reasoning workflows
@@ -97,7 +109,7 @@ agentic-ai-playground/
 
 ---
 
-### 🔎 Retrieval-Augmented Generation (RAG)
+### 🔎 Retrieval-Augmented Generation (upcoming)
 - Embeddings and semantic search
 - Vector databases
 - Chunking and retrieval strategies
@@ -111,7 +123,6 @@ Each file is written in a **clear, structured format** to maximize understanding
 
 **Suggested learning path:**
 ```text
-
 foundations/
    ↓
 prompting/
@@ -123,6 +134,8 @@ agents/
 experiments/
 ```
 
+Start with the `DAY-X.md` summary file for each day to get the full picture and key numbers, then go deep into the individual topic files in each folder.
+
 ---
 
 ## 🧪 Learning Approach
@@ -131,28 +144,42 @@ experiments/
 - Break down concepts into **simple mental models**
 - Reinforce learning through **experiments**
 - Connect theory with **real-world use cases**
+- Senior engineer Q&A format — concept + trade-offs + numbers + real examples
 
 ---
 
 ## 🗺️ Roadmap
 
-**Foundations**
+**Foundations — Day 1**
 - [x] Product AI Patterns (Assist vs Automate)
 - [x] Temperature & Top-p
 - [x] Context Window
 - [x] Pre-training
-- [ ] Tokenization
-- [ ] Fine-tuning vs Prompting
+- [x] Fine-tuning & LoRA / QLoRA
+- [x] RLHF & DPO
+- [x] Structured Outputs & Pydantic
+- [x] RAG Architecture & Evaluation
+- [x] FastAPI Framework
 
-**Agentic Systems**
-- [ ] Tool calling
-- [ ] Memory systems
+**Prompt Engineering — Day 2**
+- [x] Zero-Shot & Few-Shot Prompting
+- [x] Chain-of-Thought (CoT, Self-consistency, ToT)
+- [x] ReAct & Reflexion Patterns
+- [x] System Prompt Design for Agents
+- [x] Structured Outputs: JSON / YAML / TOON
+- [x] Pydantic Validation & Self-healing Retry
+
+**Agentic Systems — Day 3+**
+- [ ] Memory & State Management
+- [ ] Tool Calling & Function Integration
+- [ ] Human-in-the-Loop (HITL)
 - [ ] Multi-agent workflows
 
 **Projects**
 - [ ] Build a basic AI assistant
 - [ ] Implement RAG pipeline
 - [ ] Create an agent with tools
+- [ ] Multi-agent customer support system (capstone)
 
 ---
 
