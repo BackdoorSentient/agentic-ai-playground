@@ -38,9 +38,9 @@
 
 ## 1. Zero-Shot & Few-Shot Prompting
 
-> 📄 Full notes: [`prompting/01-zero-shot-and-few-shot.md`](prompting/01-zero-shot-and-few-shot.md)
+> 📄 Full notes: [`../prompting/01-zero-shot-and-few-shot.md`](../prompting/01-zero-shot-and-few-shot.md)
 
-**Core concept:** Zero-shot = direct instruction, no examples. Few-shot = 2–8 examples before the task. Both rely on the model's in-context learning ability.
+**Core concept:** Zero-shot = direct instruction, no examples. Few-shot = 2–8 examples before the task. Both rely on the model's in-context learning ability — no weight updates involved.
 
 **Key questions a senior engineer must answer:**
 - When does zero-shot work vs. fail?
@@ -48,71 +48,71 @@
 - What is the difference between zero-shot CoT and few-shot CoT?
 - What are the production failure modes of few-shot prompting?
 
-**Critical trade-off:** More examples = better accuracy but higher token cost at scale. Dynamic few-shot (retrieving examples from a vector DB based on similarity to the current query) is the production solution.
+**Critical trade-off:** More examples = better accuracy but higher token cost at scale. Dynamic few-shot (retrieving examples from a vector DB based on similarity to the current query) is the production solution — it cuts average example count from 5 fixed to 2–3 dynamic, with better accuracy.
 
 ---
 
 ## 2. Chain-of-Thought (CoT)
 
-> 📄 Full notes: [`prompting/02-chain-of-thought.md`](prompting/02-chain-of-thought.md)
+> 📄 Full notes: [`../prompting/02-chain-of-thought.md`](../prompting/02-chain-of-thought.md)
 
-**Core concept:** Force the model to generate intermediate reasoning steps before the final answer. Reasoning tokens condition the output, acting as working memory.
+**Core concept:** Force the model to generate intermediate reasoning steps before the final answer. Reasoning tokens condition the output token, acting as working memory. A single phrase — "Let's think step by step" — activates this behavior in zero-shot CoT.
 
 **Key questions a senior engineer must answer:**
-- What is zero-shot CoT vs. few-shot CoT vs. self-consistency vs. Tree of Thought?
-- What is the scratchpad pattern and how does it work in production?
+- What is zero-shot CoT vs. few-shot CoT vs. self-consistency vs. Tree of Thought vs. Program-of-Thought?
+- What is the scratchpad pattern and how does it work in production agents?
 - When does CoT hurt rather than help?
-- How do you evaluate whether CoT is adding value?
+- How do you evaluate whether CoT is adding value in your system?
 
-**Critical trade-off:** CoT adds 200–1000ms latency and 2–5× token cost. Use it only when the task has more than 2 logical steps or when wrong answers are costly.
+**Critical trade-off:** CoT adds 200–1000ms latency and 2–5× token cost. Use it only when the task has more than 2 logical steps or when wrong answers are costly. For simple tasks like translation or classification, CoT wastes tokens with no accuracy benefit.
 
 ---
 
 ## 3. ReAct & Reflexion Patterns
 
-> 📄 Full notes: [`prompting/03-react-and-reflexion.md`](prompting/03-react-and-reflexion.md)
+> 📄 Full notes: [`../prompting/03-react-and-reflexion.md`](../prompting/03-react-and-reflexion.md)
 
-**Core concept:** ReAct interleaves Thought → Action → Observation in a loop. Reflexion adds self-critique across multiple attempts, storing verbal reflections to improve on the next try.
+**Core concept:** ReAct interleaves Thought → Action → Observation in a loop — the model reasons, calls a tool, observes the result, then reasons again. Reflexion extends this by adding self-critique across multiple full attempts, storing verbal reflections as memory to guide the next try.
 
 **Key questions a senior engineer must answer:**
-- What is the Thought → Action → Observation loop and why does it outperform pure CoT?
-- How do you implement ReAct with max_iterations, error handling, and context management?
+- What is the Thought → Action → Observation loop and why does it outperform pure CoT or pure action?
+- How do you implement ReAct with max_iterations, error handling, and context management in code?
 - How does Reflexion extend ReAct, and when is the added cost worth it?
 - What are prompt injection attacks in agent systems and how do you defend against them?
 
-**Critical trade-off:** Each ReAct iteration = 1 LLM call + tool latency. A 5-iteration agent can take 5–15 seconds. Reflexion multiplies this by the number of attempts.
+**Critical trade-off:** Each ReAct iteration = 1 LLM call + tool latency. A 5-iteration agent can take 5–15 seconds end-to-end. Reflexion multiplies this by the number of attempts. Only use Reflexion when there is a clear, verifiable success/failure signal.
 
 ---
 
 ## 4. System Prompt Design for Agents
 
-> 📄 Full notes: [`prompting/04-system-prompt-design.md`](prompting/04-system-prompt-design.md)
+> 📄 Full notes: [`../prompting/04-system-prompt-design.md`](../prompting/04-system-prompt-design.md)
 
-**Core concept:** The system prompt is the agent's "constitution" — it defines identity, scope, tools, reasoning style, output format, and safety constraints. It is the single highest-leverage engineering decision in an agent system.
+**Core concept:** The system prompt is the agent's "constitution" — it defines identity, scope, tools, reasoning style, output format, and safety constraints. It is the single highest-leverage engineering decision in an agent system. A poorly designed system prompt causes bugs that don't throw exceptions.
 
 **Key questions a senior engineer must answer:**
 - What are the 6 layers every production system prompt must cover?
 - What are the 6 most common system prompt mistakes that break agents in production?
-- How do you defend against prompt injection in the system prompt itself?
+- How do you defend against prompt injection at the system prompt level?
 - When do you use few-shot examples inside the system prompt vs. a standalone system prompt?
 
-**Critical trade-off:** The system prompt is paid on every single API call. A 2,000-token system prompt at GPT-4o pricing across 10M calls/month = $50,000/month. Write concisely.
+**Critical trade-off:** The system prompt is paid on every single API call. A 2,000-token system prompt at GPT-4o pricing ($2.50/1M) across 10M calls/month = $50,000/month in input tokens alone. Write concisely. Inject dynamic context (date, user tier, account data) at runtime — never hardcode facts that go stale.
 
 ---
 
 ## 5. Structured Outputs, JSON / YAML / TOON & Pydantic Validation
 
-> 📄 Full notes: [`prompting/05-structured-outputs-and-validation.md`](prompting/05-structured-outputs-and-validation.md)
+> 📄 Full notes: [`../prompting/05-structured-outputs-and-validation.md`](../prompting/05-structured-outputs-and-validation.md)
 
-**Core concept:** Agents parse responses programmatically — free text breaks pipelines. Structured outputs (JSON schema enforcement) + Pydantic validation create reliable, type-safe agent pipelines.
+**Core concept:** Agents parse responses programmatically — free text breaks pipelines. Structured outputs (JSON schema enforcement) + Pydantic validation create reliable, type-safe agent pipelines. Three approaches: prompt-based JSON (~85–90% reliable), JSON mode (valid JSON, no schema), strict schema (99%+ reliable).
 
 **Key questions a senior engineer must answer:**
-- What are the 3 structured output approaches (prompt-based, JSON mode, strict schema) and when do you use each?
-- How do you implement self-healing validation with retry loops?
-- When should you use JSON vs. YAML vs. TOON?
-- How do you handle streaming structured outputs?
+- What are the 3 structured output approaches and when do you use each?
+- How do you implement a self-healing validation retry loop with Pydantic?
+- When should you use JSON vs. YAML vs. TOON — and what are the real token cost numbers?
+- How do you handle streaming structured outputs without breaking the parser?
 
-**Critical trade-off:** Strict structured outputs are most reliable but require supported models and add schema overhead. Prompt-based JSON is fragile but universally supported. In production, always use schema-enforced outputs where the model supports it.
+**Critical trade-off:** Strict structured outputs are most reliable but require supported models (GPT-4o-2024-08-06+, Claude via tool use). Prompt-based JSON is fragile but universally supported. In production, always use schema-enforced outputs where the model supports it — and always have a retry loop as a fallback.
 
 ---
 
@@ -145,6 +145,9 @@ Build a prompt that reliably extracts structured data. Test at scale.
 
 **What to build:**
 ```python
+from pydantic import BaseModel
+from typing import Literal
+
 class CustomerExtraction(BaseModel):
     name: str
     age: int | None
@@ -173,8 +176,8 @@ import tiktoken
 data = [{"name": "Alice", "age": 30, "city": "Mumbai", "score": 87.5} for _ in range(10)]
 
 # Encode in JSON, YAML, TOON
-# Count tokens using tiktoken (cl100k_base)
-# Measure: token count, LLM reliability (does the model parse each correctly?)
+# Count tokens using tiktoken (cl100k_base encoding)
+# Measure: token count per format, % savings, LLM parse reliability
 ```
 
 **What to document:**
