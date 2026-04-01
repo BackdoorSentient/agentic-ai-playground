@@ -42,7 +42,7 @@ agentic-ai-playground/
 ├── days/                             # Daily Q&A summary notes (entry point per day)
 │   ├── DAY-1.md                      # LLM Foundations
 │   ├── DAY-2.md                      # Prompt Engineering
-│   └── ...                           # DAY-3 through DAY-14 as the program progresses
+│   └── DAY-3.md                      # Memory & State Management ✅
 │
 ├── foundations/                      # Core LLM and AI fundamentals
 │   ├── 01-product-ai-patterns.md
@@ -62,6 +62,12 @@ agentic-ai-playground/
 │   ├── 03-react-and-reflexion.md
 │   ├── 04-system-prompt-design.md
 │   └── 05-structured-outputs-and-validation.md
+│
+├── memory/                           # Memory & State Management (Day 3) ✅ NEW
+│   ├── 01-memory-taxonomy.md
+│   ├── 02-conversation-memory-summarization.md
+│   ├── 03-state-schemas-agent-workflows.md
+│   └── 04-checkpointing-durable-execution.md
 │
 ├── agents/                           # Agentic workflows and systems (upcoming)
 │   ├── tool-calling.md
@@ -106,10 +112,21 @@ agentic-ai-playground/
 
 ---
 
+### 🧠 Memory & State Management — Day 3 ✅
+- Memory taxonomy: short-term, long-term, episodic, semantic, procedural
+- Conversation memory with LLM-based summarization (context overflow management)
+- Typed state schemas with TypedDict and Pydantic for complex agent workflows
+- Checkpointing for durable execution: pause, resume, HITL, time-travel debugging
+- Hands-on: Conversation summarizer, ChromaDB vector memory, LangGraph SqliteSaver
+
+> 📄 Summary: [`days/DAY-3.md`](days/DAY-3.md) | Deep dives: [`memory/`](memory/)
+
+---
+
 ### 🤖 Agentic AI Systems (upcoming)
 - Tool calling and function execution
-- Memory (short-term & long-term)
 - Planning and reasoning workflows
+- Human-in-the-Loop (HITL)
 - Multi-agent architectures
 
 ---
@@ -133,6 +150,8 @@ days/DAY-X.md        ← start here each day (summary + key numbers)
 foundations/         ← Week 1 deep dives
       ↓
 prompting/           ← Week 1 deep dives
+      ↓
+memory/              ← Week 2 deep dives (Day 3)
       ↓
 rag/                 ← Week 2 deep dives
       ↓
@@ -176,11 +195,18 @@ Start with the `days/DAY-X.md` summary file for each day to get the full picture
 - [x] Structured Outputs: JSON / YAML / TOON
 - [x] Pydantic Validation & Self-healing Retry
 
-**Agentic Systems — Day 3+**
-- [ ] Memory & State Management
+**Memory & State Management — Day 3**
+- [x] Memory Taxonomy (short-term, long-term, episodic, semantic, procedural)
+- [x] Conversation Memory with Summarization (context overflow)
+- [x] State Schemas for Complex Agent Workflows (TypedDict + Pydantic)
+- [x] Checkpointing for Durable Agent Execution (LangGraph SqliteSaver + HITL)
+- [ ] Deliverable: Memory-enabled chatbot with persistent user preferences
+
+**Agentic Systems — Day 4+**
 - [ ] Tool Calling & Function Integration
-- [ ] Human-in-the-Loop (HITL)
+- [ ] Human-in-the-Loop (HITL) patterns
 - [ ] Multi-agent workflows
+- [ ] Agent evaluation and observability
 
 **Projects**
 - [ ] Build a basic AI assistant
