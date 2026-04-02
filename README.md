@@ -42,7 +42,8 @@ agentic-ai-playground/
 ├── days/                             # Daily Q&A summary notes (entry point per day)
 │   ├── DAY-1.md                      # LLM Foundations
 │   ├── DAY-2.md                      # Prompt Engineering
-│   └── DAY-3.md                      # Memory & State Management ✅
+│   ├── DAY-3.md                      # Memory & State Management ✅
+│   └── DAY-4.md                      # Tool Calling & Function Integration ✅ NEW
 │
 ├── foundations/                      # Core LLM and AI fundamentals
 │   ├── 01-product-ai-patterns.md
@@ -63,11 +64,17 @@ agentic-ai-playground/
 │   ├── 04-system-prompt-design.md
 │   └── 05-structured-outputs-and-validation.md
 │
-├── memory/                           # Memory & State Management (Day 3) ✅ NEW
+├── memory/                           # Memory & State Management (Day 3) ✅
 │   ├── 01-memory-taxonomy.md
 │   ├── 02-conversation-memory-summarization.md
 │   ├── 03-state-schemas-agent-workflows.md
 │   └── 04-checkpointing-durable-execution.md
+│
+├── tool-calling/                     # Tool Calling & Function Integration (Day 4) ✅ NEW
+│   ├── 01-tool-schema-design.md
+│   ├── 02-tool-calling-mechanics.md
+│   ├── 03-tool-selection-strategies.md
+│   └── 04-error-handling-retry-logic.md
 │
 ├── agents/                           # Agentic workflows and systems (upcoming)
 │   ├── tool-calling.md
@@ -123,10 +130,20 @@ agentic-ai-playground/
 
 ---
 
+### 🔧 Tool Calling & Function Integration — Day 4 ✅ NEW
+- Tool schema design: writing definitions LLMs can reliably invoke across OpenAI, Claude, and open-source models
+- Tool calling mechanics: the full request/response cycle, parallel tool calls, ToolNode pattern
+- Tool selection strategies: all-in-context (<10), categorized routing (10–50), RAG retrieval (50+), hierarchical agents (100+)
+- Error handling & retry logic: exponential backoff, structured errors, fallback hierarchy, circuit breakers
+- Hands-on: Multi-tool agent, error handling lab, tool tracing dashboard
+
+> 📄 Summary: [`days/DAY-4.md`](days/DAY-4.md) | Deep dives: [`tool-calling/`](tool-calling/)
+
+---
+
 ### 🤖 Agentic AI Systems (upcoming)
-- Tool calling and function execution
+- Human-in-the-Loop (HITL) patterns
 - Planning and reasoning workflows
-- Human-in-the-Loop (HITL)
 - Multi-agent architectures
 
 ---
@@ -151,13 +168,15 @@ foundations/         ← Week 1 deep dives
       ↓
 prompting/           ← Week 1 deep dives
       ↓
-memory/              ← Week 2 deep dives (Day 3)
+memory/              ← Day 3 deep dives
       ↓
-rag/                 ← Week 2 deep dives
+tool-calling/        ← Day 4 deep dives
       ↓
-agents/              ← Week 2 deep dives
+rag/                 ← upcoming
       ↓
-experiments/         ← Week 3 hands-on builds
+agents/              ← upcoming
+      ↓
+experiments/         ← hands-on builds
 ```
 
 Start with the `days/DAY-X.md` summary file for each day to get the full picture and key numbers, then go deep into the individual topic files in each folder.
@@ -202,9 +221,15 @@ Start with the `days/DAY-X.md` summary file for each day to get the full picture
 - [x] Checkpointing for Durable Agent Execution (LangGraph SqliteSaver + HITL)
 - [ ] Deliverable: Memory-enabled chatbot with persistent user preferences
 
-**Agentic Systems — Day 4+**
-- [ ] Tool Calling & Function Integration
-- [ ] Human-in-the-Loop (HITL) patterns
+**Tool Calling & Function Integration — Day 4**
+- [x] Tool Schema Design (OpenAI, Claude, LangChain — provider-agnostic)
+- [x] Tool Calling Mechanics (request/response cycle, parallel calls, ToolNode)
+- [x] Tool Selection Strategies (all-in-context → routing → RAG → hierarchical)
+- [x] Error Handling & Retry Logic (backoff, structured errors, circuit breaker)
+- [ ] Deliverable: Multi-tool agent with error handling and tracing
+
+**Agentic Systems — Day 5+**
+- [ ] Human-in-the-Loop (HITL) & Interrupts
 - [ ] Multi-agent workflows
 - [ ] Agent evaluation and observability
 
