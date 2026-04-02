@@ -1,21 +1,43 @@
 ## 3. Top-p (Nucleus Sampling)
 
-### Q1: What is meaning of cumulative probability in simple words?
+### Q1: What is the meaning of cumulative probability in simple words?
+
 **Answer:**
-Imagine you're rolling a dice and listing outcomes one by one:
 
-Probability of rolling a 1 = 1/6 (about 17%)
-Probability of rolling a 2 = 1/6
+Cumulative probability is a running total of probabilities added up in order, until they reach 100%.
 
-Cumulative probability just means you keep adding up the probabilities as you go:
+Think of it like a scoreboard that keeps adding scores — you're not asking "what's the chance of this exact outcome?" but "what's the chance of this outcome **or anything before it**?"
 
-Chance of rolling 1 or lower = 17%
-Chance of rolling 2 or lower = 17% + 17% = 34%
-Chance of rolling 3 or lower = 34% + 17% = 51%
-...and so on until you hit 100% at 6
+**Dice example:**
 
-So cumulative probability answers the question: "What's the chance of getting THIS value or anything below it?"
-You're just running a running total of probabilities — like a scoreboard that keeps adding up until it reaches 100%.
+| Roll | Probability | Cumulative Probability |
+|------|-------------|----------------------|
+| 1    | 17%         | 17%                  |
+| 2    | 17%         | 34%                  |
+| 3    | 17%         | 51%                  |
+| 4    | 17%         | 68%                  |
+| 5    | 17%         | 85%                  |
+| 6    | 17%         | 100%                 |
+
+**Code:**
+```python
+probabilities = [1/6] * 6  # equal probability for each face
+
+cumulative = 0
+for i, p in enumerate(probabilities, start=1):
+    cumulative += p
+    print(f"Roll {i} → P(X ≤ {i}) = {cumulative:.2f} ({cumulative*100:.0f}%)")
+
+# Output:
+# Roll 1 → P(X ≤ 1) = 0.17 (17%)
+# Roll 2 → P(X ≤ 2) = 0.33 (33%)
+# Roll 3 → P(X ≤ 3) = 0.50 (50%)
+# Roll 4 → P(X ≤ 4) = 0.67 (67%)
+# Roll 5 → P(X ≤ 5) = 0.83 (83%)
+# Roll 6 → P(X ≤ 6) = 1.00 (100%)
+```
+
+So cumulative probability answers: **"What's the chance of getting THIS value or anything below it?"**
 
 ### Q2: What does "nucleus" mean in nucleus sampling?
 
