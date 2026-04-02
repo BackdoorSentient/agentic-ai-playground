@@ -1,6 +1,45 @@
 ## 2. Temperature
 
-### Q1: What does temperature control in an LLM, and what is happening mathematically?
+### Q1: What is a probability distribution?
+
+**Answer:**
+
+A **probability distribution** is simply a list of all possible outcomes and how likely each one is — where all the probabilities add up to 100%.
+
+**Simple example — a dice:**
+
+| Outcome | Probability |
+|---------|-------------|
+| 1       | 17%         |
+| 2       | 17%         |
+| 3       | 17%         |
+| 4       | 17%         |
+| 5       | 17%         |
+| 6       | 17%         |
+| **Total** | **100%**  |
+
+That table *is* the probability distribution — every possible outcome, with its likelihood.
+
+**In LLMs:**
+
+At every single step, the model produces a probability distribution over its entire vocabulary (~100,000 tokens):
+
+| Token   | Probability |
+|---------|-------------|
+| "the"   | 40%         |
+| "a"     | 25%         |
+| "an"    | 15%         |
+| "this"  | 10%         |
+| ...     | ...         |
+| **Total** | **100%**  |
+
+Then `temperature`, `top-k`, and `top-p` all work by **reshaping or filtering** this distribution before the model picks the next token.
+
+**One line summary:**
+
+> A probability distribution tells you — *for every possible outcome, how likely is it?* — and they all must add up to 100%.
+
+### Q2: What does temperature control in an LLM, and what is happening mathematically?
 
 **Answer:**
 
@@ -24,7 +63,7 @@ Where `T` is temperature.
 
 ---
 
-### Q2: What temperature values should you use for different use cases, and why?
+### Q3: What temperature values should you use for different use cases, and why?
 
 **Answer:**
 
@@ -46,7 +85,7 @@ Where `T` is temperature.
 
 ---
 
-### Q3: What is the difference between temperature and top-k?
+### Q4: What is the difference between temperature and top-k?
 
 **Answer:**
 
