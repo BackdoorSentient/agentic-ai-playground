@@ -1,6 +1,33 @@
 ## 4. Context Window
 
-### Q1: What is a context window, and what counts towards it?
+### Q1: What is an inference call?
+
+**Answer:**
+
+An **inference call** is simply when you **send a prompt to an LLM and get a response back**.
+
+"Inference" = the model doing its job — taking your input and predicting/generating output.
+
+So every time your code does this:
+```python
+response = client.messages.create(
+    model="claude-sonnet-4-5",
+    messages=[{"role": "user", "content": "What is 2+2?"}]
+)
+```
+
+That's one **inference call** — you're calling the model to run inference on your input.
+
+**Why it matters:**
+
+Every inference call costs tokens and adds latency. So when you hear:
+
+- "This agent makes **3 inference calls** per user query" → it hits the LLM 3 times to complete the task
+- More calls = higher cost + higher latency
+
+This is why senior engineers always ask: *"How many inference calls does this agent make per request?"*
+
+### Q2: What is a context window, and what counts towards it?
 
 **Answer:**
 
@@ -30,7 +57,7 @@ Everything in the window is attended to simultaneously via the transformer's att
 
 ---
 
-### Q2: What are the practical limitations of large context windows?
+### Q3: What are the practical limitations of large context windows?
 
 **Answer:**
 
@@ -50,7 +77,7 @@ Large context ≠ free lunch. Key issues:
 
 ---
 
-### Q3: How do you manage a conversation that exceeds the context window limit?
+### Q4: How do you manage a conversation that exceeds the context window limit?
 
 **Answer:**
 
