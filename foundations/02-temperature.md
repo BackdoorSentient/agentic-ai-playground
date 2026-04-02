@@ -39,6 +39,8 @@ Then `temperature`, `top-k`, and `top-p` all work by **reshaping or filtering** 
 
 > A probability distribution tells you — *for every possible outcome, how likely is it?* — and they all must add up to 100%.
 
+---
+
 ### Q2: What does temperature control in an LLM, and what is happening mathematically?
 
 **Answer:**
@@ -85,7 +87,71 @@ Where `T` is temperature.
 
 ---
 
-### Q4: What is the difference between temperature and top-k?
+### Q4: What is top-k sampling?
+
+**Answer:**
+
+**Top-k sampling** means — only consider the **k most likely tokens** when picking the next word, ignore everything else.
+
+**Simple example — k=3:**
+
+The model's full probability distribution:
+
+| Token   | Probability |
+|---------|-------------|
+| "the"   | 40%         |
+| "a"     | 25%         |
+| "an"    | 15%         |
+| "this"  | 10%         |
+| "every" | 5%          |
+| "some"  | 3%          |
+| ...     | ...         |
+
+With `top-k=3`, you **cut the list to top 3** and redistribute probabilities among them:
+
+| Token | Original | After top-k=3 |
+|-------|----------|----------------|
+| "the" | 40%      | 50%            |
+| "a"   | 25%      | 31%            |
+| "an"  | 15%      | 19%            |
+| ~~"this"~~ | ~~10%~~ | ❌ removed |
+| ~~"every"~~ | ~~5%~~ | ❌ removed |
+
+The model now only samples from those 3 tokens.
+
+**Code:**
+```python
+import torch
+
+logits = torch.tensor([4.0, 3.0, 2.5, 1.0, 0.5])  # raw model outputs
+k = 3
+
+# Zero out everything outside top-k
+top_k_values, top_k_indices = torch.topk(logits, k)
+filtered = torch.full_like(logits, float('-inf'))
+filtered[top_k_indices] = top_k_values
+
+# Convert to probabilities
+probs = torch.softmax(filtered, dim=-1)
+print(probs)  # only top 3 have non-zero probability
+```
+
+**The problem with top-k:**
+
+`k` is a fixed number — it doesn't adapt to the model's confidence:
+
+- Model is **very confident** → top 3 tokens cover 97% probability. With `k=50` you still include 47 near-zero tokens unnecessarily.
+- Model is **uncertain** → 200 tokens each have ~0.5% probability. With `k=50` you cut out 150 valid options.
+
+This is exactly why **top-p (nucleus sampling)** was introduced — it adapts the cutoff based on probability mass instead of a fixed count.
+
+**Typical values:**
+- `top_k = 50` is a common default
+- `top_k = 1` = always pick the single most likely token (greedy decoding)
+
+---
+
+### Q5: What is the difference between temperature and top-k?
 
 **Answer:**
 
