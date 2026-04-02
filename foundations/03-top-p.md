@@ -1,6 +1,23 @@
 ## 3. Top-p (Nucleus Sampling)
 
-### Q1: What is nucleus sampling and how does it differ from top-k?
+### Q1: What is meaning of cumulative probability in simple words?
+**Answer:**
+Imagine you're rolling a dice and listing outcomes one by one:
+
+Probability of rolling a 1 = 1/6 (about 17%)
+Probability of rolling a 2 = 1/6
+
+Cumulative probability just means you keep adding up the probabilities as you go:
+
+Chance of rolling 1 or lower = 17%
+Chance of rolling 2 or lower = 17% + 17% = 34%
+Chance of rolling 3 or lower = 34% + 17% = 51%
+...and so on until you hit 100% at 6
+
+So cumulative probability answers the question: "What's the chance of getting THIS value or anything below it?"
+You're just running a running total of probabilities — like a scoreboard that keeps adding up until it reaches 100%.
+
+### Q2: What is nucleus sampling and how does it differ from top-k?
 
 **Answer:**
 
@@ -25,7 +42,7 @@ Top-p **adapts** to the model's confidence at each step. Top-k does not.
 
 ---
 
-### Q2: When would you set top-p = 1.0 vs top-p = 0.5?
+### Q3: When would you set top-p = 1.0 vs top-p = 0.5?
 
 **Answer:**
 
@@ -37,7 +54,7 @@ Top-p **adapts** to the model's confidence at each step. Top-k does not.
 
 ---
 
-### Q3: What happens if you set both temperature and top-p to non-default values simultaneously?
+### Q4: What happens if you set both temperature and top-p to non-default values simultaneously?
 
 **Answer:**
 
