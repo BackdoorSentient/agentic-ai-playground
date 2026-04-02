@@ -17,7 +17,17 @@ Chance of rolling 3 or lower = 34% + 17% = 51%
 So cumulative probability answers the question: "What's the chance of getting THIS value or anything below it?"
 You're just running a running total of probabilities — like a scoreboard that keeps adding up until it reaches 100%.
 
-### Q2: What is nucleus sampling and how does it differ from top-k?
+### Q2: What does "nucleus" mean in nucleus sampling?
+
+**Answer:**
+
+**Nucleus** means the **core group** — the small cluster of most likely tokens that together account for enough probability mass to meet the threshold `p`.
+
+Think of it like a solar system — the nucleus is the dense center where most of the "weight" lives. Everything outside it is the long tail of low-probability tokens you don't want to sample from.
+
+So "nucleus sampling" = **only sample from the core group of tokens that matter**, ignore everything else.
+
+### Q3: What is nucleus sampling and how does it differ from top-k?
 
 **Answer:**
 
@@ -42,7 +52,7 @@ Top-p **adapts** to the model's confidence at each step. Top-k does not.
 
 ---
 
-### Q3: When would you set top-p = 1.0 vs top-p = 0.5?
+### Q4: When would you set top-p = 1.0 vs top-p = 0.5?
 
 **Answer:**
 
@@ -54,7 +64,7 @@ Top-p **adapts** to the model's confidence at each step. Top-k does not.
 
 ---
 
-### Q4: What happens if you set both temperature and top-p to non-default values simultaneously?
+### Q5: What happens if you set both temperature and top-p to non-default values simultaneously?
 
 **Answer:**
 
