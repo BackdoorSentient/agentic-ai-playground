@@ -43,7 +43,8 @@ agentic-ai-playground/
 │   ├── DAY-1.md                      # LLM Foundations
 │   ├── DAY-2.md                      # Prompt Engineering
 │   ├── DAY-3.md                      # Memory & State Management ✅
-│   └── DAY-4.md                      # Tool Calling & Function Integration ✅ NEW
+│   ├── DAY-4.md                      # Tool Calling & Function Integration ✅
+│   └── DAY-5.md                      # Human-in-the-Loop & Interrupts ✅ NEW
 │
 ├── foundations/                      # Core LLM and AI fundamentals
 │   ├── 01-product-ai-patterns.md
@@ -70,11 +71,17 @@ agentic-ai-playground/
 │   ├── 03-state-schemas-agent-workflows.md
 │   └── 04-checkpointing-durable-execution.md
 │
-├── tool-calling/                     # Tool Calling & Function Integration (Day 4) ✅ NEW
+├── tool-calling/                     # Tool Calling & Function Integration (Day 4) ✅
 │   ├── 01-tool-schema-design.md
 │   ├── 02-tool-calling-mechanics.md
 │   ├── 03-tool-selection-strategies.md
 │   └── 04-error-handling-retry-logic.md
+│
+├── hitl/                             # Human-in-the-Loop & Interrupts (Day 5) ✅ NEW
+│   ├── 01-approval-workflows.md
+│   ├── 02-confidence-escalation.md
+│   ├── 03-langgraph-interrupt.md
+│   └── 04-feedback-loops.md
 │
 ├── agents/                           # Agentic workflows and systems (upcoming)
 │   ├── tool-calling.md
@@ -130,7 +137,7 @@ agentic-ai-playground/
 
 ---
 
-### 🔧 Tool Calling & Function Integration — Day 4 ✅ NEW
+### 🔧 Tool Calling & Function Integration — Day 4 ✅
 - Tool schema design: writing definitions LLMs can reliably invoke across OpenAI, Claude, and open-source models
 - Tool calling mechanics: the full request/response cycle, parallel tool calls, ToolNode pattern
 - Tool selection strategies: all-in-context (<10), categorized routing (10–50), RAG retrieval (50+), hierarchical agents (100+)
@@ -141,8 +148,18 @@ agentic-ai-playground/
 
 ---
 
+### 🛑 Human-in-the-Loop & Interrupts — Day 5 ✅ NEW
+- Approval workflows: when to interrupt, what to show, how to audit decisions
+- Confidence-based escalation: logprobs, self-assessment, ensemble voting, threshold calibration
+- LangGraph `interrupt()` mechanics: full suspend/resume cycle, checkpointers (Memory, Sqlite, Postgres)
+- Feedback loops: explicit (thumbs up/down), implicit (retry detection), offline analysis, closing the loop
+- Hands-on: Approval workflow with audit trail, confidence router at 0.7 threshold, feedback collection node
+
+> 📄 Summary: [`days/DAY-5.md`](days/DAY-5.md) | Deep dives: [`hitl/`](hitl/)
+
+---
+
 ### 🤖 Agentic AI Systems (upcoming)
-- Human-in-the-Loop (HITL) patterns
 - Planning and reasoning workflows
 - Multi-agent architectures
 
@@ -171,6 +188,8 @@ prompting/           ← Week 1 deep dives
 memory/              ← Day 3 deep dives
       ↓
 tool-calling/        ← Day 4 deep dives
+      ↓
+hitl/                ← Day 5 deep dives
       ↓
 rag/                 ← upcoming
       ↓
@@ -228,8 +247,14 @@ Start with the `days/DAY-X.md` summary file for each day to get the full picture
 - [x] Error Handling & Retry Logic (backoff, structured errors, circuit breaker)
 - [ ] Deliverable: Multi-tool agent with error handling and tracing
 
-**Agentic Systems — Day 5+**
-- [ ] Human-in-the-Loop (HITL) & Interrupts
+**Human-in-the-Loop & Interrupts — Day 5**
+- [x] Approval Workflows for Sensitive Actions (irreversible, financial, PII, escalatory)
+- [x] Confidence-Based Escalation (self-assessment, logprobs, ensemble, threshold calibration)
+- [x] LangGraph interrupt() — full suspend/resume cycle, checkpointers, multi-interrupt patterns
+- [x] Feedback Loops — explicit collection, implicit signals, offline analysis, closing the loop
+- [ ] Deliverable: Agent with 2 HITL checkpoints and feedback collection mechanism
+
+**Agentic Systems — Day 6+**
 - [ ] Multi-agent workflows
 - [ ] Agent evaluation and observability
 
