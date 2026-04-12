@@ -45,7 +45,8 @@ agentic-ai-playground/
 │   ├── DAY-3.md                      # Memory & State Management ✅
 │   ├── DAY-4.md                      # Tool Calling & Function Integration ✅
 │   ├── DAY-5.md                      # Human-in-the-Loop & Interrupts ✅
-│   └── DAY-6.md                      # Build Your First Agent — Design & Setup ✅ NEW
+│   ├── DAY-6.md                      # Build Your First Agent — Design & Setup ✅
+│   └── DAY-7.md                      # Complete Agent — HITL, Observability & Polish ✅ NEW
 │
 ├── foundations/                      # Core LLM and AI fundamentals (Day 1)
 │   ├── 01-product-ai-patterns.md
@@ -84,11 +85,16 @@ agentic-ai-playground/
 │   ├── 03-langgraph-interrupt.md
 │   └── 04-feedback-loops.md
 │
-├── agent-design/                     # Build Your First Agent (Day 6) ✅ NEW
+├── agent-design/                     # Agent Design & Complete Build (Days 6–7) ✅ NEW
 │   ├── 01-agent-architecture.md
 │   ├── 02-state-schema-langgraph.md
 │   ├── 03-tools-react-memory.md
-│   └── 04-observability-logging.md
+│   ├── 04-observability-logging.md
+│   ├── 05-hitl-approval-integration.md  ← NEW Day 7
+│   ├── 06-conversation-summarization.md ← NEW Day 7
+│   ├── 07-observability-logging.md      ← NEW Day 7
+│   ├── 08-feedback-collection.md        ← NEW Day 7
+│   └── 09-e2e-testing-gradio.md         ← NEW Day 7
 │
 ├── agents/                           # Agentic workflows and systems (upcoming)
 │   ├── tool-calling.md
@@ -166,7 +172,7 @@ agentic-ai-playground/
 
 ---
 
-### 🏗️ Build Your First Agent — Design & Setup — Day 6 ✅ NEW
+### 🏗️ Build Your First Agent — Design & Setup — Day 6 ✅
 - Full production agent architecture: 6 layers, component map, data-flow design before coding
 - State schema design: TypedDict with `Annotated[list, add_messages]`, optional fields, initialization
 - Project structure: agents/, tools/, memory/, prompts/, observability/, logs/, data/, tests/
@@ -181,8 +187,23 @@ agentic-ai-playground/
 
 ---
 
+### 🚀 Complete Agent — HITL, Observability & Polish — Day 7 ✅ NEW
+- **Full graph topology**: 9-node LangGraph with conditional edges — approval gate fires only for `save_note`, all other tools bypass it
+- **HITL approval node**: `interrupt()` shows exact note content to user, handles approve / reject / edit outcomes, routes accordingly
+- **Conversation summarization**: tiktoken counting at 2000-token threshold, LLM-based compression, keeps last 4 messages raw, injects summary as system message
+- **Feedback collection node**: `interrupt()` for thumbs up/down at end of every turn, persisted to SQLite with full context (query, response, tool, session ID, timestamp)
+- **Observability decorator**: `@observe_llm(model, node_name)` wraps every LLM call — logs timestamp, tokens, cost (per-token pricing table), latency_ms, errors to JSONL
+- **Log viewer**: reads JSONL, prints total calls/tokens/cost, per-node latency and cost breakdown
+- **E2E test suite**: 5 scenarios covering web search, note HITL, calendar, memory recall, feedback; mocks LLM + tools for determinism
+- **Gradio UI** *(stretch)*: chat window + dynamic approve/reject panel that appears only when HITL fires + memory sidebar
+- **Streaming** *(stretch)*: token-by-token response with generator-based Gradio handler
+- **Deliverable**: Fully working Personal Research Assistant — memory, 3 tools, HITL on notes, summarization, feedback, full logging
+
+> 📄 Summary: [`days/DAY-7.md`](days/DAY-7.md) | Deep dives: [`agent-design/05`](agent-design/05-hitl-approval-integration.md) · [`06`](agent-design/06-conversation-summarization.md) · [`07`](agent-design/07-observability-logging.md) · [`08`](agent-design/08-feedback-collection.md) · [`09`](agent-design/09-e2e-testing-gradio.md)
+
+---
+
 ### 🤖 Agentic AI Systems (upcoming)
-- HITL integration, feedback collection, streaming, Gradio UI (Day 7)
 - Agent framework landscape: LangGraph, CrewAI, OpenAI Agents SDK, Claude SDK, Google ADK, AWS Strands (Day 8)
 - Multi-agent architecture patterns: Supervisor, Swarm, Debate, Graph-based (Day 9)
 - Evaluation & metrics: LLM-as-judge, golden datasets, DeepEval (Day 10)
@@ -218,7 +239,7 @@ tool-calling/        ← Day 4 deep dives
       ↓
 hitl/                ← Day 5 deep dives
       ↓
-agent-design/        ← Day 6 deep dives
+agent-design/        ← Days 6–7 deep dives (01–09)
       ↓
 rag/                 ← upcoming
       ↓
@@ -243,60 +264,29 @@ Start with the `days/DAY-X.md` summary file for each day to get the full picture
 
 ## 🗺️ Roadmap
 
-**Foundations — Day 1**
-- [x] Product AI Patterns (Assist vs Automate)
-- [x] Temperature & Top-p
-- [x] Context Window
-- [x] Pre-training
-- [x] Fine-tuning & LoRA / QLoRA
-- [x] RLHF & DPO
-- [x] Structured Outputs & Pydantic
-- [x] RAG Architecture & Evaluation
-- [x] FastAPI Framework
+**Foundations — Day 1** ✅
+**Prompt Engineering — Day 2** ✅
+**Memory & State Management — Day 3** ✅
+**Tool Calling & Function Integration — Day 4** ✅
+**Human-in-the-Loop & Interrupts — Day 5** ✅
+**Build Your First Agent — Design & Setup — Day 6** ✅
 
-**Prompt Engineering — Day 2**
-- [x] Zero-Shot & Few-Shot Prompting
-- [x] Chain-of-Thought (CoT, Self-consistency, ToT)
-- [x] ReAct & Reflexion Patterns
-- [x] System Prompt Design for Agents
-- [x] Structured Outputs: JSON / YAML / TOON
-- [x] Pydantic Validation & Self-healing Retry
-
-**Memory & State Management — Day 3**
-- [x] Memory Taxonomy (short-term, long-term, episodic, semantic, procedural)
-- [x] Conversation Memory with Summarization (context overflow)
-- [x] State Schemas for Complex Agent Workflows (TypedDict + Pydantic)
-- [x] Checkpointing for Durable Agent Execution (LangGraph SqliteSaver + HITL)
-- [ ] Deliverable: Memory-enabled chatbot with persistent user preferences
-
-**Tool Calling & Function Integration — Day 4**
-- [x] Tool Schema Design (OpenAI, Claude, LangChain — provider-agnostic)
-- [x] Tool Calling Mechanics (request/response cycle, parallel calls, ToolNode)
-- [x] Tool Selection Strategies (all-in-context → routing → RAG → hierarchical)
-- [x] Error Handling & Retry Logic (backoff, structured errors, circuit breaker)
-- [ ] Deliverable: Multi-tool agent with error handling and tracing
-
-**Human-in-the-Loop & Interrupts — Day 5**
-- [x] Approval Workflows for Sensitive Actions (irreversible, financial, PII, escalatory)
-- [x] Confidence-Based Escalation (self-assessment, logprobs, ensemble, threshold calibration)
-- [x] LangGraph interrupt() — full suspend/resume cycle, checkpointers, multi-interrupt patterns
-- [x] Feedback Loops — explicit collection, implicit signals, offline analysis, closing the loop
-- [ ] Deliverable: Agent with 2 HITL checkpoints and feedback collection mechanism
-
-**Build Your First Agent — Design & Setup — Day 6**
-- [x] Full Agent Architecture & Component Map (6-layer design, data-flow diagram)
-- [x] State Schema Design (TypedDict, Annotated add_messages, optional fields, init)
-- [x] Project Structure (agents/, tools/, memory/, prompts/, observability/, logs/)
-- [x] LangGraph Setup (9 nodes, conditional edges, SqliteSaver checkpointer)
-- [x] Three Core Tools (web_search mock+real, save_note, calendar_lookup)
-- [x] ReAct System Prompt (Thought → Action → Observation → Final Answer)
-- [x] Short-Term Memory (tiktoken counting, LLM summarization at 2000 tokens)
-- [x] Long-Term Memory (ChromaDB, fact extraction prompt, retrieve-upsert cycle)
-- [x] Observability Layer (JSONL logger, cost per model, session report, debug queries)
-- [ ] Deliverable: Runnable agent skeleton with all tools wired, memory working, logging active
+**Complete Agent — HITL, Observability & Polish — Day 7** ✅ NEW
+- [x] Full LangGraph graph topology (9 nodes, conditional HITL edge)
+- [x] HITL approval node — approve / reject / edit outcomes
+- [x] HITL audit trail (SQLite `hitl_audit` table)
+- [x] Conversation summarization at 2000-token threshold with tiktoken
+- [x] Tail-message preservation (last 4 messages kept raw)
+- [x] Feedback collection node — thumbs up/down with SQLite persistence
+- [x] Implicit signal detection (retry detection)
+- [x] `@observe_llm` decorator — tokens, cost, latency, errors → JSONL
+- [x] Log viewer — total calls/tokens/cost + per-node breakdown
+- [x] 5-scenario end-to-end test suite with mocked LLM
+- [x] Gradio UI with dynamic HITL panel *(stretch)*
+- [x] Token-by-token streaming via generator *(stretch)*
+- [ ] Deliverable: Runnable Personal Research Assistant with all features wired
 
 **Upcoming — Week 2**
-- [ ] Day 7: HITL + feedback + streaming + Gradio UI + full agent delivery
 - [ ] Day 8: Agent Framework Landscape (LangGraph, CrewAI, OpenAI Agents SDK, Claude SDK)
 - [ ] Day 9: Multi-Agent Architecture Patterns (Supervisor, Swarm, Debate, Graph)
 - [ ] Day 10: Evaluation & Metrics (LLM-as-judge, golden datasets, DeepEval)
@@ -305,7 +295,7 @@ Start with the `days/DAY-X.md` summary file for each day to get the full picture
 - [ ] Days 13–14: Capstone — Multi-Agent Customer Support System
 
 **Projects**
-- [ ] Personal Research Assistant (Days 6–7)
+- [ ] Personal Research Assistant (Days 6–7) ← in progress
 - [ ] Implement RAG pipeline
 - [ ] Multi-agent customer support system (capstone)
 
