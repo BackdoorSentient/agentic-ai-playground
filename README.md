@@ -48,9 +48,10 @@ agentic-ai-playground/
 │   ├── DAY-6.md                      # Build Your First Agent — Design & Setup ✅
 │   ├── DAY-7.md                      # Complete Agent — HITL, Observability & Polish ✅
 │   ├── DAY-8.md                      # Agent Framework Landscape ✅
-│   └── DAY-9.md                      # Multi-Agent Architecture Patterns ✅ NEW
+│   ├── DAY-9.md                      # Multi-Agent Architecture Patterns ✅
+│   └── DAY-10.md                     # Evaluation & Metrics for Agents ✅ NEW
 │
-├── agent-design/                     # Agent Design & Complete Build (Days 6–9) ✅
+├── agent-design/                     # Agent Design & Complete Build (Days 6–10) ✅
 │   ├── 01-agent-architecture.md
 │   ├── 02-state-schema-langgraph.md
 │   ├── 03-tools-react-memory.md
@@ -64,12 +65,22 @@ agentic-ai-playground/
 │   ├── 11-crewai-hello-world.md
 │   ├── 12-framework-feature-matrix.md
 │   ├── 13-framework-comparison-doc.md
-│   ├── 14-supervisor-pattern.md          ← NEW Day 9
-│   ├── 15-agents-as-tools.md             ← NEW Day 9
-│   ├── 16-swarm-pattern.md               ← NEW Day 9
-│   ├── 17-graph-pattern.md               ← NEW Day 9
-│   ├── 18-debate-consensus.md            ← NEW Day 9
-│   └── 19-multi-agent-hands-on.md        ← NEW Day 9
+│   ├── 14-supervisor-pattern.md
+│   ├── 15-agents-as-tools.md
+│   ├── 16-swarm-pattern.md
+│   ├── 17-graph-pattern.md
+│   ├── 18-debate-consensus.md
+│   ├── 19-multi-agent-hands-on.md
+│   ├── 20-evaluation-datasets.md         ← NEW Day 10
+│   ├── 21-llm-as-judge.md                ← NEW Day 10
+│   ├── 22-key-metrics.md                 ← NEW Day 10
+│   ├── 23-experiment-tracking.md         ← NEW Day 10
+│   ├── 24-deepeval-setup.md              ← NEW Day 10
+│   └── 25-evaluation-hands-on.md         ← NEW Day 10
+│
+└── datasets/
+    └── golden/
+        └── v1.0.0_golden.json            ← NEW Day 10 (20-case golden dataset)
 ```
 
 ---
@@ -100,25 +111,40 @@ agentic-ai-playground/
 ### 🗺️ Agent Framework Landscape — Day 8 ✅
 > 📄 Summary: [`days/DAY-8.md`](days/DAY-8.md) | Deep dives: [`agent-design/10–13`](agent-design/)
 
+### 🤝 Multi-Agent Architecture Patterns — Day 9 ✅
+- Supervisor / Orchestrator pattern: central LLM routes tasks to specialist workers, top-down control
+- Agents-as-Tools pattern: sub-agents wrapped as callable functions — composable, swappable
+- Swarm / Peer-to-Peer pattern: autonomous agents hand off to each other via structured HANDOFF tokens
+- Graph pattern (LangGraph): typed state machine with nodes/edges/checkpointers for complex workflows
+- Debate / Consensus pattern: multi-agent critique + judge → 15–25% fewer factual errors
+- Hands-on #1: Supervisor system routing to Coding Agent and Research Agent (LangGraph graph)
+- Hands-on #2: Two debater agents + judge with 2-round structured debate and JSON verdict
+- Hands-on #3: Three-agent swarm chain: intake → specialist → quality agent
+- Deliverable: Full working multi-agent system (supervisor + swarm + debate) with logging and guards
+
+> 📄 Summary: [`days/DAY-9.md`](days/DAY-9.md) | Deep dives: [`14`](agent-design/14-supervisor-pattern.md) · [`15`](agent-design/15-agents-as-tools.md) · [`16`](agent-design/16-swarm-pattern.md) · [`17`](agent-design/17-graph-pattern.md) · [`18`](agent-design/18-debate-consensus.md) · [`19`](agent-design/19-multi-agent-hands-on.md)
+
 ---
 
-### 🤝 Multi-Agent Architecture Patterns — Day 9 ✅ NEW
-- **Supervisor / Orchestrator pattern**: central LLM routes tasks to specialist workers, top-down control
-- **Agents-as-Tools pattern**: sub-agents wrapped as callable functions — composable, swappable
-- **Swarm / Peer-to-Peer pattern**: autonomous agents hand off to each other via structured HANDOFF tokens
-- **Graph pattern (LangGraph)**: typed state machine with nodes/edges/checkpointers for complex workflows
-- **Debate / Consensus pattern**: multi-agent critique + judge → 15–25% fewer factual errors
-- **Hands-on #1**: Supervisor system routing to Coding Agent and Research Agent (LangGraph graph)
-- **Hands-on #2**: Two debater agents + judge with 2-round structured debate and JSON verdict
-- **Hands-on #3**: Three-agent swarm chain: intake → specialist → quality agent
-- **Deliverable**: Full working multi-agent system (supervisor + swarm + debate) with logging and guards
+### 📊 Evaluation & Metrics for Agents — Day 10 ✅ NEW
 
-> 📄 Summary: [`days/DAY-9.md`](days/DAY-9.md) | Deep dives: [`agent-design/14`](agent-design/14-supervisor-pattern.md) · [`15`](agent-design/15-agents-as-tools.md) · [`16`](agent-design/16-swarm-pattern.md) · [`17`](agent-design/17-graph-pattern.md) · [`18`](agent-design/18-debate-consensus.md) · [`19`](agent-design/19-multi-agent-hands-on.md)
+**Core formula: `EVALUATION = DATASET × TASK × SCORERS`**
+
+- **Dataset types**: Golden (50–200 cases, regression guard), Edge Cases (20–50, failure modes), Synthetic (1000+, scale), Production Samples (ongoing, real-world validation)
+- **Key metrics**: Task Completion Rate (>85%), Tool Correctness (>90%), Reasoning Quality via LLM-as-judge (>3.5/5), FACTSCORE Faithfulness (>80%), Latency P50/P95, Cost per successful task
+- **LLM-as-Judge pattern**: evaluate agent response on 1–5 scale with `{score, reasoning, issues}` — calibrate to >85% within-1-point agreement with human labels
+- **Experiment tracking**: version prompts like code, log every run to JSONL/MLflow/Langfuse, gate on regression thresholds (TCR drop >5% → fail CI)
+- **DeepEval**: open-source framework with built-in AnswerRelevancy, Faithfulness, Hallucination, ToolCorrectness, and GEval metrics — pytest integration for CI/CD
+- **Hands-on #1**: 20-case golden dataset for customer support agent (happy paths + edge cases in JSON)
+- **Hands-on #2**: LLM-as-judge async scoring pipeline with per-case tool correctness + output field checks + JSONL experiment log
+- **Hands-on #3**: DeepEval suite with AnswerRelevancyMetric + custom GEval for helpfulness, parametrized across golden dataset
+- **Deliverable**: End-to-end eval pipeline: dataset → agent run → multi-scorer → aggregate → experiment log → regression gate
+
+> 📄 Summary: [`days/DAY-10.md`](days/DAY-10.md) | Deep dives: [`20`](agent-design/20-evaluation-datasets.md) · [`21`](agent-design/21-llm-as-judge.md) · [`22`](agent-design/22-key-metrics.md) · [`23`](agent-design/23-experiment-tracking.md) · [`24`](agent-design/24-deepeval-setup.md) · [`25`](agent-design/25-evaluation-hands-on.md)
 
 ---
 
 ### 🤖 Agentic AI Systems (upcoming)
-- Evaluation & metrics: LLM-as-judge, golden datasets, DeepEval (Day 10)
 - Observability & production debugging: Langfuse, LangSmith, cost tracking (Day 11)
 - Responsible AI & guardrails: prompt injection defense, PII masking, NeMo Guardrails (Day 12)
 - Capstone: Multi-Agent Customer Support System (Days 13–14)
@@ -127,28 +153,28 @@ agentic-ai-playground/
 
 ## 🗺️ Roadmap
 
-**Foundations — Day 1** ✅
-**Prompt Engineering — Day 2** ✅
-**Memory & State Management — Day 3** ✅
-**Tool Calling & Function Integration — Day 4** ✅
-**Human-in-the-Loop & Interrupts — Day 5** ✅
-**Build Your First Agent — Design & Setup — Day 6** ✅
-**Complete Agent — HITL, Observability & Polish — Day 7** ✅
-**Agent Framework Landscape — Day 8** ✅
-**Multi-Agent Architecture Patterns — Day 9** ✅ NEW
-- [x] Supervisor / Orchestrator pattern — mechanics, routing, parallel workers
-- [x] Agents-as-Tools — composable sub-agent delegation via function calls
-- [x] Swarm / Peer-to-Peer — autonomous handoffs with HANDOFF token protocol
-- [x] Graph pattern (LangGraph) — typed state machine, fan-out, HITL nodes
-- [x] Debate / Consensus — adversarial debate, voting, constitutional self-critique
-- [x] Hands-on: Supervisor system (coding + research agents)
-- [x] Hands-on: Debate system (2 debaters + judge, JSON verdict)
-- [x] Hands-on: Swarm chain (intake → specialist → quality agent)
-- [x] Deliverable: Complete multi-agent system with guards + logging
+**Foundations — Day 1** ✅  
+**Prompt Engineering — Day 2** ✅  
+**Memory & State Management — Day 3** ✅  
+**Tool Calling & Function Integration — Day 4** ✅  
+**Human-in-the-Loop & Interrupts — Day 5** ✅  
+**Build Your First Agent — Design & Setup — Day 6** ✅  
+**Complete Agent — HITL, Observability & Polish — Day 7** ✅  
+**Agent Framework Landscape — Day 8** ✅  
+**Multi-Agent Architecture Patterns — Day 9** ✅  
+**Evaluation & Metrics for Agents — Day 10** ✅ NEW
+- [x] Dataset types: Golden, Edge Cases, Synthetic, Production Samples
+- [x] Key metrics: TCR, Tool Correctness, LLM-as-Judge, FACTSCORE, Latency P50/P95, Cost Efficiency
+- [x] LLM-as-Judge pattern: single-output, multi-dimensional, pairwise — with calibration
+- [x] Experiment tracking: JSONL logger, Langfuse, MLflow, CI regression gate
+- [x] DeepEval: built-in metrics, GEval custom criteria, pytest integration
+- [x] Hands-on: 20-case golden dataset (JSON)
+- [x] Hands-on: Async LLM-as-judge pipeline with tool correctness + experiment log
+- [x] Hands-on: DeepEval test suite with parametrized golden cases
+- [x] Deliverable: Full eval pipeline with 20+ cases and automated scoring
 
 **Upcoming — Week 2**
-- [ ] Day 10: Evaluation & Metrics (LLM-as-judge, golden datasets, DeepEval)
-- [ ] Day 11: Observability & Production Debugging (Langfuse, cost dashboards)
+- [ ] Day 11: Observability & Production Debugging (Langfuse, cost dashboards, LangSmith)
 - [ ] Day 12: Responsible AI & Guardrails (injection defense, PII masking, NeMo)
 - [ ] Days 13–14: Capstone — Multi-Agent Customer Support System
 
